@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🔐 RSA Quest</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- floating deco -->
+<div class="floaties">
+  <span class="floaty f1">⭐</span>
+  <span class="floaty f2">💚</span>
+  <span class="floaty f3">🌙</span>
+  <span class="floaty f4">✦</span>
+  <span class="floaty f5">💫</span>
+  <span class="floaty f6">🔷</span>
+  <span class="floaty f7">⭐</span>
+  <span class="floaty f8">💙</span>
+</div>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="cat-wrap">
+      <svg class="pixel-cat" width="80" height="80" viewBox="0 0 20 20">
+        <!-- ears -->
+        <rect x="2"  y="1" width="3" height="3" fill="#00cc66"/>
+        <rect x="15" y="1" width="3" height="3" fill="#00cc66"/>
+        <rect x="3"  y="2" width="1" height="1" fill="#00ff88"/>
+        <rect x="16" y="2" width="1" height="1" fill="#00ff88"/>
+        <!-- head -->
+        <rect x="2" y="4" width="16" height="10" fill="#1a1a3a"/>
+        <rect x="3" y="4" width="14" height="9"  fill="#20204a"/>
+        <!-- cheeks -->
+        <rect x="3"  y="9" width="3" height="2" fill="#0033aa" opacity=".6"/>
+        <rect x="14" y="9" width="3" height="2" fill="#0033aa" opacity=".6"/>
+        <!-- eyes — glowing green -->
+        <rect x="6"  y="6" width="2" height="3" fill="#00ff88"/>
+        <rect x="12" y="6" width="2" height="3" fill="#00ff88"/>
+        <rect x="7"  y="6" width="1" height="1" fill="#ccffee" opacity=".8"/>
+        <rect x="13" y="6" width="1" height="1" fill="#ccffee" opacity=".8"/>
+        <!-- nose -->
+        <rect x="9" y="9" width="2" height="1" fill="#00aaff"/>
+        <!-- mouth -->
+        <rect x="8"  y="10" width="1" height="1" fill="#0066cc"/>
+        <rect x="11" y="10" width="1" height="1" fill="#0066cc"/>
+        <!-- whiskers -->
+        <rect x="0"  y="9" width="4" height="1" fill="#2a2a6a"/>
+        <rect x="16" y="9" width="4" height="1" fill="#2a2a6a"/>
+        <rect x="0"  y="7" width="3" height="1" fill="#2a2a6a"/>
+        <rect x="17" y="7" width="3" height="1" fill="#2a2a6a"/>
+        <!-- body -->
+        <rect x="4"  y="14" width="12" height="6" fill="#20204a"/>
+        <!-- paws -->
+        <rect x="2"  y="17" width="4" height="3" fill="#1a1a3a"/>
+        <rect x="14" y="17" width="4" height="3" fill="#1a1a3a"/>
+        <!-- toe lines -->
+        <rect x="3"  y="19" width="1" height="1" fill="#00cc66"/>
+        <rect x="5"  y="19" width="1" height="1" fill="#00cc66"/>
+        <rect x="15" y="19" width="1" height="1" fill="#00cc66"/>
+        <rect x="17" y="19" width="1" height="1" fill="#00cc66"/>
+        <!-- tail -->
+        <rect x="17" y="12" width="2" height="5" fill="#00cc66"/>
+        <rect x="18" y="10" width="2" height="3" fill="#00cc66"/>
+        <!-- key badge -->
+        <rect x="8" y="13" width="4" height="2" fill="#ffdd00"/>
+        <rect x="9" y="12" width="2" height="1" fill="#ffdd00"/>
+        <rect x="8" y="14" width="1" height="1" fill="#aa8800"/>
+        <rect x="11" y="14" width="1" height="1" fill="#aa8800"/>
+      </svg>
+    </div>
+    <h1>RSA QUEST</h1>
+    <div class="subtitle">✦ pixel crypto simulator ✦</div>
+    <div class="tagline">encrypt your secrets · char by char</div>
+  </div>
+
+  <!-- STAR PROGRESS -->
+  <div class="star-progress">
+    <span class="star-label">QUEST</span>
+    <div class="stars-row">
+      <span class="star-pip" id="star0">⭐</span>
+      <span class="star-pip" id="star1">⭐</span>
+      <span class="star-pip" id="star2">⭐</span>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab active" onclick="showPanel(0)" id="tab0"><span class="tab-ico">🔑</span>KEYS</button>
+    <button class="tab"        onclick="showPanel(1)" id="tab1"><span class="tab-ico">🔒</span>LOCK</button>
+    <button class="tab"        onclick="showPanel(2)" id="tab2"><span class="tab-ico">🔓</span>UNLOCK</button>
+  </div>
+
+  <!-- ══ PANEL 0: KEY GEN ══ -->
+  <div class="panel active" id="panel0">
+    <div class="panel-title">[ LEVEL 1 ] — GENERATE YOUR KEYS</div>
+
+    <div class="bubble-info">
+      pick two prime numbers and kitty will bake your encryption keys! 🍀
+    </div>
+
+    <div class="controls-grid">
+      <div class="ctrl-box">
+        <label class="field-label">▸ prime p</label>
+        <select id="selP" onchange="onPrimeChange()">
+          <option value="11" selected>11</option><option value="13">13</option>
+          <option value="17">17</option><option value="19">19</option>
+          <option value="23">23</option><option value="29">29</option>
+          <option value="31">31</option><option value="37">37</option>
+          <option value="41">41</option><option value="43">43</option>
+          <option value="47">47</option><option value="53">53</option>
+          <option value="59">59</option><option value="61">61</option>
+        </select>
+      </div>
+      <div class="ctrl-box">
+        <label class="field-label">▸ prime q</label>
+        <select id="selQ" onchange="onPrimeChange()">
+          <option value="11">11</option><option value="13" selected>13</option>
+          <option value="17">17</option><option value="19">19</option>
+          <option value="23">23</option><option value="29">29</option>
+          <option value="31">31</option><option value="37">37</option>
+          <option value="41">41</option><option value="43">43</option>
+          <option value="47">47</option><option value="53">53</option>
+          <option value="59">59</option><option value="61">61</option>
+        </select>
+      </div>
+      <div class="ctrl-box">
+        <label class="field-label">▸ exponent e</label>
+        <select id="selE" onchange="computeKeys()"></select>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-bottom:4px;">
+      <button class="pixel-btn green" onclick="computeKeys()">▶ generate keys!</button>
+    </div>
+
+    <div id="keyBox" style="display:none">
+      <div class="ribbon">★ your magic keys ★</div>
+      <div class="key-card">
+        <div class="key-section public">
+          <div class="key-section-title">🌿 public key — share freely</div>
+          <div class="key-pair-row"><span class="kp-label">e =</span><span class="kp-val" id="dispE">—</span></div>
+          <div class="key-pair-row"><span class="kp-label">n =</span><span class="kp-val" id="dispN">—</span></div>
+        </div>
+        <div class="key-section private">
+          <div class="key-section-title">🔐 private key — keep secret!</div>
+          <div class="key-pair-row"><span class="kp-label">d =</span><span class="kp-val" id="dispD">—</span></div>
+          <div class="key-pair-row"><span class="kp-label">n =</span><span class="kp-val" id="dispN2">—</span></div>
+        </div>
+        <div class="key-extras">
+          <div class="extra-row"><span class="ext-label">φ(n) =</span><span class="ext-val" id="dispPhi">—</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="steps-log" id="keySteps"></div>
+
+    <div id="goEncBtn" style="display:none; text-align:center; margin-top:18px;">
+      <button class="pixel-btn blue" onclick="showPanel(1)">▶ next: lock a message</button>
+    </div>
+  </div>
+
+  <!-- ══ PANEL 1: ENCRYPT ══ -->
+  <div class="panel" id="panel1">
+    <div class="panel-title">[ LEVEL 2 ] — LOCK YOUR MESSAGE</div>
+
+    <div id="encKeyHud" class="key-hud">
+      <div class="hud-empty">🐱 no keys yet — go to KEYS tab first</div>
+    </div>
+
+    <div class="bubble-info">
+      type any message! each letter becomes a secret number using your public key 💌
+    </div>
+
+    <label class="field-label" style="margin-bottom:8px;">▸ your message</label>
+    <div class="input-row">
+      <input type="text" id="msgInput" placeholder="e.g.  hello" maxlength="30" class="cute-input">
+      <button class="pixel-btn green" onclick="doEncrypt()">🔒 lock it!</button>
+    </div>
+    <div class="hint-text">each letter → ascii number → encrypted with public key</div>
+
+    <div id="encResult"></div>
+    <div class="steps-log" id="encSteps"></div>
+
+    <div id="goDecBtn" style="display:none; text-align:center; margin-top:18px;">
+      <button class="pixel-btn pink" onclick="showPanel(2)">▶ next: unlock it</button>
+    </div>
+  </div>
+
+  <!-- ══ PANEL 2: DECRYPT ══ -->
+  <div class="panel" id="panel2">
+    <div class="panel-title">[ LEVEL 3 ] — UNLOCK THE SECRET</div>
+
+    <div id="decKeyHud" class="key-hud">
+      <div class="hud-empty">🐱 no keys yet — go to KEYS tab first</div>
+    </div>
+
+    <div class="bubble-info">
+      kitty uses the private key to turn secret numbers back into words! 🪄
+    </div>
+
+    <label class="field-label" style="margin-bottom:8px;">▸ ciphertext numbers</label>
+    <div class="input-row">
+      <input type="text" id="ctInput" placeholder="auto-filled after locking~" class="cute-input">
+      <button class="pixel-btn pink" onclick="doDecrypt()">🔓 unlock!</button>
+    </div>
+    <div class="hint-text">paste numbers from level 2, or they auto-fill</div>
+
+    <div id="decResult"></div>
+    <div class="steps-log" id="decSteps"></div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-cat">🐱💚</div>
+    rsa quest · pixel crypto simulator<br>educational use only · small primes for demo
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
